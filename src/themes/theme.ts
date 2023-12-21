@@ -15,11 +15,13 @@ export interface MyTheme {
 export const theme: MyTheme = {
   breakpoint: "1024px",
   colors: {
-    background: "#F6FEF3",
-    primary: "#4FE52F",
-    secondary: "#79EEE9",
-    accent: "#4BBAE9",
-    primaryText: "#071E04",
-    secondaryText: "#687865",
+    background: "#050115",
+    primary: "#7E6EF8",
+    secondary: "#800799",
+    accent: "#F41BDD",
+    primaryText: "#DFDCFD",
+    secondaryText: "#9c99b6",
   },
 };
+
+export default theme;
