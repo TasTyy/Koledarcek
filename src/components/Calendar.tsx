@@ -1,40 +1,62 @@
-import { useState } from "react";
-import { getDaysInMonth, renderDays } from "../utils/calendarUtils";
+import { ChangeEvent, FormEvent, useState } from "react";
+import Input from "./Input";
 
 function Calendar() {
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const months = [
+    "Januar",
+    "Februar",
+    "Marec",
+    "April",
+    "Maj",
+    "Junij",
+    "Julij",
+    "Avgust",
+    "September",
+    "Oktober",
+    "November",
+    "December",
+  ];
 
-  const handleMonthChange = (e) => {
-    setSelectedMonth(parseInt(e.target.value, 10));
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleYearChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setYear(e.target.value);
+
+  const handleMonthChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setMonth(e.target.value);
   };
 
-  const handleYearChange = (e) => {
-    setSelectedYear(parseInt(e.target.value, 10));
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!year.trim()) {
+      setError(true);
+    } else setError(false);
   };
+
   return (
-    <div className="calendar-wrapper">
-      <div className="calendar-header">
-        <select
-          value={selectedMonth}
-          onChange={handleMonthChange}
-          className="mr-2 border rounded p-1"
-        >
-          {/* Populate the combo box with month options */}
-          {/* You can dynamically generate the options based on your needs */}
-          <option value={1}>January</option>
-          <option value={2}>February</option>
-          {/* ... add options for all months ... */}
-        </select>
-        <input
-          type="text"
-          value={selectedYear}
-          onChange={handleYearChange}
-          placeholder="Enter year"
-          className="border rounded p-1"
-        />
+    <div className="flex">
+      <div className="flex flex-row">
+        <form onSubmit={handleSubmit}>
+          <select value={month} onChange={handleMonthChange}>
+            {months.map((month, index) => (
+              <option key={index + 1} value={index + 1}>
+                {month}
+              </option>
+            ))}
+          </select>
+          <Input
+            label="Leto"
+            type="number"
+            value={year}
+            name="year"
+            error={error}
+            onChange={handleYearChange}
+            placeholder="Vpiši leto"
+          ></Input>
+        </form>
       </div>
-      <div>{renderDays(selectedMonth, selectedYear)}</div>
     </div>
   );
 }
