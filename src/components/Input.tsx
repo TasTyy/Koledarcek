@@ -23,7 +23,9 @@ function Input({
 }: InputProps) {
   return (
     <div className="flex flex-col text-white">
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={label} className="pl-5">
+        {label}
+      </label>
       <input
         type={type}
         id={label}
@@ -32,7 +34,7 @@ function Input({
         placeholder={placeholder}
         onChange={onChange}
         disabled={disabled}
-        className="text-black p-1"
+        className="text-black px-4 py-3 rounded-full h-[35px]"
       />
       {error && <p className="">Input field can't be empty!</p>}
     </div>
