@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 
 interface InputProps {
-  type: "text" | "number" | "email" | "password";
+  type: "text" | "number" | "email" | "password" | "date";
   label: string;
   value: string | number;
   name: string;
