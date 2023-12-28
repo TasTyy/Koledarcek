@@ -20,7 +20,7 @@ function Home() {
         <TitleText className="text-center underline decoration-5 decoration-[#7E6EF8]">
           Koledarček
         </TitleText>
-        <NormalText className="text-center">
+        <NormalText className="text-center pb-10">
           V koledarčku se prikazujejo dnevi v trenutno izbranem mesecu in letu.
         </NormalText>
         <Calendar />
