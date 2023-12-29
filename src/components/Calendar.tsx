@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import Input from "./Input";
 import ComboBox from "./ComboBox";
 import { CalendarCell, generateCalendar } from "../utils/calendarUtils";
@@ -25,13 +25,6 @@ function Calendar() {
   const [month, setMonth] = useState("");
   const [error, setError] = useState(false);
   const [calendar, setCalendar] = useState<CalendarCell[][]>([]);
-
-  const handleYearChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setYear(e.target.value);
-
-  const handleMonthChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setMonth(e.target.value);
-  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,7 +58,7 @@ function Calendar() {
           <ComboBox
             value={month}
             label="Mesec"
-            onChange={handleMonthChange}
+            onChange={(e) => setMonth(e.target.value)}
             months={months}
           />
           <Input
@@ -74,7 +67,7 @@ function Calendar() {
             value={year}
             name="year"
             error={error}
-            onChange={handleYearChange}
+            onChange={(e) => setYear(e.target.value)}
             placeholder="Vpiši leto"
           />
           <button
@@ -86,13 +79,13 @@ function Calendar() {
         </form>
         <form onSubmit={handleDateSubmit} className="flex flex-row gap-5">
           <Input
-            label="Datum"
+            label="Izberi datum"
             type="date"
             value={inputDate}
             name="inputDate"
             error={error}
             onChange={(e) => setInputDate(e.target.value)}
-            placeholder="Lmao dab"
+            placeholder=""
           />
           <button
             type="submit"
@@ -116,7 +109,7 @@ function Calendar() {
                 <th>Sob</th>
               </tr>
             </thead>
-            <tbody className="text-[50px] text-center">
+            <tbody className="text-[45px] text-center">
               {calendar.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {row.map((cell, columnIndex) => {
